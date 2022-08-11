@@ -9,7 +9,7 @@ export default function CastItem({ casts }) {
               alt={cast.name}
             />
           ) : (
-            <img src="#" alt="#" />
+            <img src="#" alt="sdfsdf" />
           )}
           <p>{cast.name}</p>
           <p>{cast.caracter}</p>

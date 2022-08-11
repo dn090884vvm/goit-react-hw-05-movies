@@ -22,3 +22,10 @@ export async function getMovieReviews(id) {
   const { data } = await axios.get(`/3/movie/${id}/reviews?api_key=${API_KEY}`);
   return { data };
 }
+
+export async function getMoviesByQuery(searchQuery) {
+  const { data } = await axios.get(
+    `/3/search/movie?api_key=${API_KEY}&query=${searchQuery}&include_adult=false`
+  );
+  return { data };
+}

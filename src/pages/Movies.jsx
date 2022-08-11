@@ -1,20 +1,43 @@
-export const Movies = () => {
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import SearchBar from 'components/SearchBar/SearchBar';
+import { getMoviesByQuery } from 'api/api';
+import MovieListQuery from 'components/MovieListQuery/MovieListQuery';
+
+export default function Movies() {
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchWord = searchParams.get('searchWord');
+
+  useEffect(() => {
+    if (searchWord) {
+      const fetchMovies = async () => {
+        setIsLoading(true);
+        try {
+          const { data } = await getMoviesByQuery(searchWord);
+
+          setMovies(data.results);
+        } catch (error) {
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchMovies();
+    }
+  }, [searchWord]);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    setSearchParams({ searchWord: event.target.elements.searchWord.value });
+  };
+
   return (
-    <main>
-      <h1>About Us</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus
-        laborum amet ab cumque sit nihil dolore modi error repudiandae
-        perspiciatis atque voluptas corrupti, doloribus ex maiores quam magni
-        mollitia illum dolor quis alias in sequi quod. Sunt ex numquam hic
-        asperiores facere natus sapiente cum neque laudantium quam, expedita
-        voluptates atque quia aspernatur saepe illo, rem quasi praesentium
-        aliquid sed inventore obcaecati veniam? Nisi magnam vero, dolore
-        praesentium totam ducimus similique asperiores culpa, eius amet
-        repudiandae quam ut. Architecto commodi, tempore ut nostrum voluptas
-        dolorum illum voluptatum dolores! Quas perferendis quis alias excepturi
-        eaque voluptatibus eveniet error, nulla rem iusto?
-      </p>
-    </main>
+    <div>
+      <SearchBar onSubmit={handleSubmit} />
+      {isLoading && <div>Loading...</div>}
+      <MovieListQuery movies={movies} />
+    </div>
   );
-};
+}

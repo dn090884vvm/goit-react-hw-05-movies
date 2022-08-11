@@ -1,6 +1,6 @@
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { FaArrowLeft } from 'react-icons/fa';
+
 import { getMovieById } from 'api/api';
 import { BackButton, StyledLink } from './MoviesDetailedPage.styled';
 import MovieCard from 'components/MovieCard/MovieCard';
@@ -19,7 +19,7 @@ export default function MoviesDetailedPage() {
       setIsLoading(true);
       try {
         const { data } = await getMovieById(movieId);
-        console.log(data);
+        // console.log(data);
         setMovie(data);
       } catch (error) {
         error('Page is not found');

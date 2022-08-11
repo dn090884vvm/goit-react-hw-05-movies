@@ -11,7 +11,7 @@ export default function Home() {
       setIsLoading(true);
       try {
         const { data } = await getTrendingMovies();
-        console.log(data.results);
+        // console.log(data.results);
         setMovies(data.results);
       } catch (error) {
       } finally {

@@ -6,6 +6,7 @@ import CastItem from 'components/CastItem/CastItem';
 
 export default function Cast() {
   const { movieId } = useParams();
+  //   console.log(movieId);
   const [casts, setCasts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,7 +16,7 @@ export default function Cast() {
       try {
         const { data } = await getMovieCredits(movieId);
         setCasts(data.cast);
-        console.log(data.cast);
+        // console.log(data.cast);
       } catch (error) {
       } finally {
         setIsLoading(false);

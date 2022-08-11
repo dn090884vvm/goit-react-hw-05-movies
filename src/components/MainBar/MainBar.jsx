@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Header, Container } from './MainBar.styled';
 import Navigation from 'components/Navigation/Navigation';
-// import { Suspense } from 'react';
+import { Suspense } from 'react';
 
 export default function MainBar() {
   return (
@@ -10,8 +10,9 @@ export default function MainBar() {
         <Header>
           <Navigation />
         </Header>
-
-        <Outlet />
+        <Suspense fallback="">
+          <Outlet />
+        </Suspense>
       </Container>
     </div>
   );

@@ -7,3 +7,18 @@ export async function getTrendingMovies() {
   const response = await axios.get(`/3/trending/movie/day?api_key=${API_KEY}`);
   return response;
 }
+
+export async function getMovieById(id) {
+  const { data } = await axios.get(`/3/movie/${id}?api_key=${API_KEY}`);
+  return { data };
+}
+
+export async function getMovieCredits(id) {
+  const { data } = await axios.get(`/3/movie/${id}/credits?api_key=${API_KEY}`);
+  return { data };
+}
+
+export async function getMovieReviews(id) {
+  const { data } = await axios.get(`/3/movie/${id}/reviews?api_key=${API_KEY}`);
+  return { data };
+}

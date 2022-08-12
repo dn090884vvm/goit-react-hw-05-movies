@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieReviews } from 'api/api';
+import { Loader } from 'components/Loader/Loader';
+import { DivLoader } from 'components/Loader/Loader.styled';
 import ReviewsItem from 'components/ReviewsItem/ReviewsItem';
 
 export default function Reviews() {
@@ -26,7 +28,11 @@ export default function Reviews() {
 
   return (
     <div>
-      {isLoading && <p>Loading...</p>}{' '}
+      {isLoading && (
+        <DivLoader>
+          <Loader />
+        </DivLoader>
+      )}
       {reviews.length !== 0 ? (
         <ReviewsItem reviews={reviews} />
       ) : (

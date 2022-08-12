@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Loader } from 'components/Loader/Loader';
+import { DivLoader } from 'components/Loader/Loader.styled';
 
 import { getMovieCredits } from 'api/api';
 import CastItem from 'components/CastItem/CastItem';
@@ -27,7 +29,11 @@ export default function Cast() {
 
   return (
     <div>
-      {isLoading && <div>Loading </div>}
+      {isLoading && (
+        <DivLoader>
+          <Loader />
+        </DivLoader>
+      )}
       {casts.length !== 0 ? <CastItem casts={casts} /> : <p>No found</p>}
     </div>
   );

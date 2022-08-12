@@ -1,21 +1,32 @@
+import {
+  DivWrapper,
+  ImageWrapper,
+  MovieHeader,
+  Details,
+  GenresWrapper,
+  Genres,
+} from './MovieCard.styled';
 export default function MovieCard({ movie }) {
   return (
-    <div>
-      <div>
+    <DivWrapper>
+      <ImageWrapper>
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
         />
-      </div>
+      </ImageWrapper>
       <div>
-        <h2>{movie.title}</h2>
-        <p>{movie.vote_average}</p>
-        <p>{movie.overview}</p>
-        <div>
+        <MovieHeader>{movie.title}</MovieHeader>
+        <Details>{`User score:   ${movie.vote_average} %`}</Details>
+        <Details>{`Overview:  ${movie.overview}`}</Details>
+        <GenresWrapper>
+          Genres:
           {movie.genres &&
-            movie.genres.map(({ id, name }) => <div key={id}>{name}</div>)}
-        </div>
+            movie.genres.map(({ id, name }) => (
+              <Genres key={id}>{name}</Genres>
+            ))}
+        </GenresWrapper>
       </div>
-    </div>
+    </DivWrapper>
   );
 }

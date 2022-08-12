@@ -1,6 +1,9 @@
 import { getTrendingMovies } from 'api/api';
 import { useState, useEffect } from 'react';
 import { StyledLink } from './Home.styled';
+import { Loader } from 'components/Loader/Loader';
+import { DivLoader } from 'components/Loader/Loader.styled';
+import { Container } from 'components/MainBar/MainBar.styled';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -23,14 +26,20 @@ export default function Home() {
   }, []);
   return (
     <main>
-      {isLoading && <div>...Loading</div>}
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <StyledLink to={`/movies/${movie.id}`}>{movie.title}</StyledLink>
-          </li>
-        ))}
-      </ul>
+      <Container>
+        {isLoading && (
+          <DivLoader>
+            <Loader />
+          </DivLoader>
+        )}
+        <ul>
+          {movies.map(movie => (
+            <li key={movie.id}>
+              <StyledLink to={`/movies/${movie.id}`}>{movie.title}</StyledLink>
+            </li>
+          ))}
+        </ul>
+      </Container>
     </main>
   );
 }

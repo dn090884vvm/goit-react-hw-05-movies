@@ -3,6 +3,9 @@ import { useSearchParams } from 'react-router-dom';
 import SearchBar from 'components/SearchBar/SearchBar';
 import { getMoviesByQuery } from 'api/api';
 import MovieListQuery from 'components/MovieListQuery/MovieListQuery';
+import { Loader } from 'components/Loader/Loader';
+import { DivLoader } from 'components/Loader/Loader.styled';
+import { Container } from 'components/MainBar/MainBar.styled';
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
@@ -34,10 +37,14 @@ export default function Movies() {
   };
 
   return (
-    <div>
+    <Container>
       <SearchBar onSubmit={handleSubmit} />
-      {isLoading && <div>Loading...</div>}
+      {isLoading && (
+        <DivLoader>
+          <Loader />
+        </DivLoader>
+      )}
       <MovieListQuery movies={movies} />
-    </div>
+    </Container>
   );
 }

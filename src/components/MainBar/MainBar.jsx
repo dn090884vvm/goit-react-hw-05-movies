@@ -10,7 +10,7 @@ export default function MainBar() {
         <Header>
           <Navigation />
         </Header>
-        <Suspense fallback="">
+        <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
       </Container>

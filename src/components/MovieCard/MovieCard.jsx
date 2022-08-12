@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import {
   DivWrapper,
   ImageWrapper,
@@ -6,6 +7,7 @@ import {
   GenresWrapper,
   Genres,
 } from './MovieCard.styled';
+
 export default function MovieCard({ movie }) {
   return (
     <DivWrapper>
@@ -30,3 +32,7 @@ export default function MovieCard({ movie }) {
     </DivWrapper>
   );
 }
+
+MovieCard.propTypes = {
+  movie: propTypes.object.isRequired,
+};

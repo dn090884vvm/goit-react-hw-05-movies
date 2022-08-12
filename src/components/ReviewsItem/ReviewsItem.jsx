@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import { Review } from './Reviews.styled';
 
 export default function ReviewsItem({ reviews }) {
@@ -12,3 +13,7 @@ export default function ReviewsItem({ reviews }) {
     </ul>
   );
 }
+
+ReviewsItem.propTypes = {
+  reviews: propTypes.arrayOf(propTypes.object).isRequired,
+};

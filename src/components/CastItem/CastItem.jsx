@@ -1,3 +1,6 @@
+import image from '../../Images/movieNotFound.jpg';
+import propTypes from 'prop-types';
+
 export default function CastItem({ casts }) {
   return (
     <ul>
@@ -9,7 +12,7 @@ export default function CastItem({ casts }) {
               alt={cast.name}
             />
           ) : (
-            <img src="#" alt="sdfsdf" />
+            <img src={image} alt={cast.name} />
           )}
           <p>{cast.name}</p>
           <p>{cast.caracter}</p>
@@ -18,3 +21,7 @@ export default function CastItem({ casts }) {
     </ul>
   );
 }
+
+CastItem.propTypes = {
+  casts: propTypes.arrayOf(propTypes.object).isRequired,
+};

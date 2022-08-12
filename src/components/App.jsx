@@ -1,13 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import { GlobalStyle } from './GlobalStyle';
-// import Home from 'pages/Home';
-// import Movies from 'pages/Movies';
 import MainBar from './MainBar/MainBar';
-
-// import MoviesDetailedPage from 'pages/MoviesDetailedPage';
-// import Cast from 'pages/Cast';
-// import Reviews from 'pages/Reviews';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));

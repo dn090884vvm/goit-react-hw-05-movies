@@ -1,4 +1,6 @@
 import propTypes from 'prop-types';
+import image from '../../Images/movieNotFound.jpg';
+
 import {
   DivWrapper,
   ImageWrapper,
@@ -12,10 +14,14 @@ export default function MovieCard({ movie }) {
   return (
     <DivWrapper>
       <ImageWrapper>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
-        />
+        {movie.poster_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+          />
+        ) : (
+          <img src={image} alt={movie.title} />
+        )}
       </ImageWrapper>
       <div>
         <MovieHeader>{movie.title}</MovieHeader>
